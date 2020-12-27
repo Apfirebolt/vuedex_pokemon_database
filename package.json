@@ -8,8 +8,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "lodash": "^4.17.20",
+    "mitt": "^2.1.0",
+    "tailwindcss": "^2.0.2",
+    "vee-validate": "^3.4.5",
+    "vue": "^2.6.11",
+    "vue-router": "^3.4.9",
+    "vue-simple-spinner": "^1.2.10",
+    "vue-tailwind": "^2.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
