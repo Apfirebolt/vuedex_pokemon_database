@@ -38,11 +38,11 @@ Please find some of the screenshots of the application. First screenshot depicts
 
 This shows pokemon detail page with a modal which displays the stats of pokemon,
 
-![alt text](./screenshots/pokemon_stats.png)
+![alt text](./screenshots/Pokemon_stats.png)
 
 This screenshot shows the items page of the application where all the items in the pokemon universe are displayed, details page exist for each one of them. Pagination and search filters are applied.
 
-![alt text](./screenshots/items_list.png)
+![alt text](./screenshots/Items_list.png)
 
 This shows page where list of moves in pokemon universe is depicted.
 
