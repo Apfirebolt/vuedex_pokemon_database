@@ -5,15 +5,16 @@
 </template>
 
 <script>
-import PokemonImage from "../assets/pikachu.jpg"
+import PokemonImage from '../assets/pikachu.jpg';
+
 export default {
   name: 'Home',
   data() {
     return {
-      PokemonImage
-    }
-  }
-}
+      PokemonImage,
+    };
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

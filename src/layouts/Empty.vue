@@ -9,11 +9,12 @@
 <script>
 import HeaderComponent from '../components/common/header.vue';
 import FooterComponent from '../components/common/footer.vue';
+
 export default {
   name: 'Empty',
   components: {
     HeaderComponent,
     FooterComponent,
-  }
-}
+  },
+};
 </script>

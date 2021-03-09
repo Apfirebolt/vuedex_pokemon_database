@@ -27,7 +27,9 @@
             <a>{{ props.row.url }}</a>
           </td>
           <td class="flex justify-left p-3">
-            <t-button variant="secondary" @click="changeUrl(props.row.name)">View</t-button>
+            <t-button variant="secondary" @click="changeUrl(props.row.name)">
+              View
+            </t-button>
           </td>
         </tr>
       </template>
@@ -37,8 +39,20 @@
 
 <script>
 import Spinner from 'vue-simple-spinner';
+
 export default {
   name: 'MoveHome',
+  components: {
+    Spinner,
+  },
+  filters: {
+    capitals(value) {
+      if (value) {
+        return value.charAt(0).toUpperCase() + value.slice(1);
+      }
+      return value;
+    },
+  },
   data() {
     return {
       search: '',
@@ -49,30 +63,18 @@ export default {
       urlParams: {
         offset: 0,
         limit: 20,
-      }
-    }
-  },
-  components: {
-    Spinner,
-  },
-  watch: {
-    currentPage: 'changePage'
-  },
-  filters: {
-    capitals(value) {
-      if (value) {
-        return value.charAt(0).toUpperCase() + value.slice(1)
-      }
-    }
+      },
+    };
   },
   computed: {
-   filteredList() {
-     if (this.search) {
-      return this.moves.filter(item => {
-       return item.name.toLowerCase().includes(this.search.toLowerCase())
-     })
-    } else return this.moves;
-   }
+    filteredList() {
+      if (this.search) {
+        return this.moves.filter((item) => item.name.toLowerCase().includes(this.search.toLowerCase()));
+      } return this.moves;
+    },
+  },
+  watch: {
+    currentPage: 'changePage',
   },
   mounted() {
     this.getApiData();
@@ -92,11 +94,9 @@ export default {
       this.urlParams.offset = (val - 1) * this.urlParams.limit;
       this.getApiData();
     },
-    changeUrl(move_name) {
-      this.$router.push({ name: 'MoveDetail', params: { id: move_name } });
+    changeUrl(moveName) {
+      this.$router.push({ name: 'MoveDetail', params: { id: moveName } });
     },
-  }
-}
+  },
+};
 </script>
-
-

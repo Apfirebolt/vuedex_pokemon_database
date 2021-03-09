@@ -14,7 +14,7 @@ const routes = [
         name: 'Home',
         component: () => import('../views/Home.vue'),
       },
-    ]
+    ],
   },
   {
     path: '/pokemon',
@@ -64,8 +64,8 @@ const routes = [
       },
     ],
   },
-]    
-      
+];
+
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,

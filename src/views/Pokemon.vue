@@ -27,7 +27,9 @@
             <a>{{ props.row.url }}</a>
           </td>
           <td class="flex justify-left p-3">
-            <t-button variant="secondary" @click="changeUrl(props.row.name)">View</t-button>
+            <t-button variant="secondary" @click="changeUrl(props.row.name)">
+              View
+            </t-button>
           </td>
         </tr>
       </template>
@@ -37,10 +39,19 @@
 
 <script>
 import Spinner from 'vue-simple-spinner';
+
 export default {
   name: 'Pokemon',
   components: {
     Spinner,
+  },
+  filters: {
+    capitals(value) {
+      if (value) {
+        return value.charAt(0).toUpperCase() + value.slice(1);
+      }
+      return value;
+    },
   },
   data() {
     return {
@@ -52,30 +63,21 @@ export default {
       urlParams: {
         offset: 0,
         limit: 20,
-      }
-    }
+      },
+    };
+  },
+  computed: {
+    filteredList() {
+      if (this.search) {
+        return this.pokemon.filter((item) => item.name.toLowerCase().includes(this.search.toLowerCase()));
+      } return this.pokemon;
+    },
   },
   watch: {
-    currentPage: function(val) {
+    currentPage(val) {
       this.urlParams.offset = (val - 1) * this.urlParams.limit;
       this.getApiData();
     },
-  },
-  filters: {
-    capitals(value) {
-      if (value) {
-        return value.charAt(0).toUpperCase() + value.slice(1)
-      }
-    }
-  },
-  computed: {
-   filteredList() {
-     if (this.search) {
-      return this.pokemon.filter(item => {
-       return item.name.toLowerCase().includes(this.search.toLowerCase())
-     })
-    } else return this.pokemon;
-   }
   },
   mounted() {
     this.getApiData();
@@ -91,10 +93,9 @@ export default {
       }
       this.isLoading = false;
     },
-    changeUrl(pokemon_name) {
-      this.$router.push({ name: 'PokemonDetail', params: { id: pokemon_name } });
+    changeUrl(pokemonName) {
+      this.$router.push({ name: 'PokemonDetail', params: { id: pokemonName } });
     },
-  }
-}
+  },
+};
 </script>
-

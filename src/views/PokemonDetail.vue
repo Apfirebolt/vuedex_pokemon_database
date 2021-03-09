@@ -10,9 +10,9 @@
     <div class="flex justify-center my-2">
       <t-button type="button" @click="statsModalOpen = true">
         Show Stats
-      </t-button>        
-    </div>  
-  <t-table
+      </t-button>
+    </div>
+    <t-table
       :headers="['Name', 'Move Url', 'Move Learned At', 'Method', 'Action']"
       :data="pokemonData.moves"
     >
@@ -31,19 +31,25 @@
             <a>{{ props.row.version_group_details[0].move_learn_method.name|capitals }}</a>
           </td>
           <td class="flex justify-left p-3">
-            <t-button variant="secondary" @click="changeUrl(props.row.move.name)">View</t-button>
+            <t-button variant="secondary" @click="changeUrl(props.row.move.name)">
+              View
+            </t-button>
           </td>
         </tr>
       </template>
     </t-table>
     <t-modal ref="statsModal" v-model="statsModalOpen">
-      <pokemon-stats-modal :pokemonStats="pokemonData.stats" />
+      <pokemon-stats-modal :pokemon-stats="pokemonData.stats" />
       <template slot="header">
-        <h2 class="text-center"> {{ pokemonData.name|capitals }} Stats</h2>
+        <h2 class="text-center">
+          {{ pokemonData.name|capitals }} Stats
+        </h2>
       </template>
       <template slot="footer">
         <div class="flex justify-around">
-          <t-button variant="error" type="button" @click="$refs.statsModal.hide()">Cancel</t-button>
+          <t-button variant="error" type="button" @click="$refs.statsModal.hide()">
+            Cancel
+          </t-button>
         </div>
       </template>
     </t-modal>
@@ -59,24 +65,26 @@
 <script>
 import Spinner from 'vue-simple-spinner';
 import PokemonStatsModal from '../components/modals/pokemon-stats.vue';
+
 export default {
   name: 'PokemonDetail',
   components: {
     Spinner,
     PokemonStatsModal,
   },
+  filters: {
+    capitals(value) {
+      if (value) {
+        return value.charAt(0).toUpperCase() + value.slice(1);
+      }
+      return value;
+    },
+  },
   data() {
     return {
       pokemonData: null,
       statsModalOpen: false,
-    }
-  },
-  filters: {
-    capitals(value) {
-      if (value) {
-        return value.charAt(0).toUpperCase() + value.slice(1)
-      }
-    }
+    };
   },
   mounted() {
     this.getApiData();
@@ -86,13 +94,12 @@ export default {
       const url = `v2/pokemon/${this.$route.params.id}`;
       this.pokemonData = await this.$http.get(url);
     },
-    changeUrl(move_name) {
-      this.$router.push({ name: 'MoveDetail', params: { id: move_name } });
+    changeUrl(moveName) {
+      this.$router.push({ name: 'MoveDetail', params: { id: moveName } });
     },
     navigateBack() {
       this.$router.go(-1);
     },
-  }
-}
+  },
+};
 </script>
-

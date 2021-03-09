@@ -1,25 +1,26 @@
 <template>
   <spinner v-if="!itemData" :spacing="55" class="my-3" size="large" />
-  <div class="container" v-else>
+  <div v-else class="container">
     <p class="text-2xl text-gray-600 text-center my-2">
-     {{ itemData.name }} ({{ itemData.category.name }})
-    </p> 
+      {{ itemData.name }} ({{ itemData.category.name }})
+    </p>
     <p class="text-2xl text-gray-600 text-center my-2">
-     Cost - {{ itemData.cost }}
-    </p> 
+      Cost - {{ itemData.cost }}
+    </p>
     <p class="text-xl text-red-400 text-center my-2">
-     Info - {{ itemData.effect_entries[0].effect }}
-    </p>        
+      Info - {{ itemData.effect_entries[0].effect }}
+    </p>
     <div class="flex justify-center p-3">
       <t-button type="button" variant="error" @click="navigateBack">
         Return
       </t-button>
-    </div>  
+    </div>
   </div>
 </template>
 
 <script>
 import Spinner from 'vue-simple-spinner';
+
 export default {
   name: 'ItemDetail',
   components: {
@@ -29,7 +30,7 @@ export default {
     return {
       page: 0,
       itemData: null,
-    }
+    };
   },
   mounted() {
     this.getApiData();
@@ -42,6 +43,6 @@ export default {
     navigateBack() {
       this.$router.go(-1);
     },
-  }
-}
+  },
+};
 </script>
