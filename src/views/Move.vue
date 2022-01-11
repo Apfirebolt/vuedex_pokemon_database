@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <spinner v-if="isLoading" :spacing="55" class="my-3" size="large" />
-    <div v-if="count" class="my-3 flex justify-between">
+    <div v-if="count" class="my-3 flex justify-between items-center">
       <div class="container flex w-100">
         <t-input-group class="w-1/2">
           <t-input v-model="search" placeholder="Search here" type="text" name="search" class="w-50" />

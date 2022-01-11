@@ -4,7 +4,7 @@
       Get all pokemon data at one place. Powered by pokeAPI
     </p>
     <p class="text-gray-700 my-3">
-      copyright@vuedex all rights reserved 2020
+      copyright@vuedex all rights reserved 2022
     </p>
   </footer>
 </template>
