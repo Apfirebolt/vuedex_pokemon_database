@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello sm:my-10">
     <spinner v-if="isLoading" :spacing="55" class="my-3" size="large" />
     <div v-if="count" class="my-3 flex justify-between items-center">
       <div class="container flex w-100">
