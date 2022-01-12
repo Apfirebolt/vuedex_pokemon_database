@@ -1,6 +1,6 @@
 <template>
   <spinner v-if="!pokemonData" :spacing="55" class="my-3" size="large" />
-  <t-card v-else>
+  <t-card v-else class="mt-6">
     <p class="text-2xl text-gray-600 font-mono text-center my-2">
       {{ pokemonData.name|capitals }}
     </p>

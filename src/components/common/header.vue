@@ -131,9 +131,6 @@ export default {
   components: {
     MobileMenu,
   },
-  props: {
-    msg: String,
-  },
   data() {
     return {
       showSidebar: false,
