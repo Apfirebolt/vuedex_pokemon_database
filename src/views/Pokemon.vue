@@ -39,11 +39,13 @@
 
 <script>
 import Spinner from 'vue-simple-spinner';
+import MobileMenu from '../components/common/mobile-menu.vue';
 
 export default {
   name: 'Pokemon',
   components: {
     Spinner,
+    MobileMenu,
   },
   filters: {
     capitals(value) {
@@ -95,6 +97,9 @@ export default {
     },
     changeUrl(pokemonName) {
       this.$router.push({ name: 'PokemonDetail', params: { id: pokemonName } });
+    },
+    closeSidebar() {
+      this.showSidebar = false;
     },
   },
 };
