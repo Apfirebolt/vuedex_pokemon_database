@@ -3,6 +3,7 @@ import events from './events';
 
 let baseURL = process.env.VUE_APP_API_URL;
 if (!baseURL) {
+  // 'https://pokeapi.co/api'
   baseURL = '/api';
 }
 
