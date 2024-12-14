@@ -7,6 +7,14 @@
           <t-input v-model="search" placeholder="Search here" type="text" name="search" class="w-50" />
         </t-input-group>
       </div>
+      <t-button class="flex justify-center items-center mx-2" variant="secondary" @click="sortData()">
+        <svg v-if="reverse" data-slot="icon" fill="none" stroke-width="1" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        <svg v-else data-slot="icon" fill="none" stroke-width="1" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+      </t-button>
       <t-pagination
         v-model="currentPage"
         :total-items="count"
@@ -39,13 +47,11 @@
 
 <script>
 import Spinner from 'vue-simple-spinner';
-import MobileMenu from '../components/common/mobile-menu.vue';
 
 export default {
   name: 'Pokemon',
   components: {
     Spinner,
-    MobileMenu,
   },
   filters: {
     capitals(value) {
@@ -60,6 +66,7 @@ export default {
       isLoading: false,
       search: '',
       currentPage: 1,
+      reverse: false,
       pokemon: [],
       count: 0,
       urlParams: {
@@ -94,6 +101,16 @@ export default {
         this.count = pokemonData.count;
       }
       this.isLoading = false;
+    },
+    sortData() {
+      if (this.reverse) {
+        this.filteredList.sort((a, b) => a.name.localeCompare(b.name));
+        this.reverse = false;
+      } else {
+        this.filteredList.sort((a, b) => b.name.localeCompare(a.name));
+        this.reverse = true;
+      }
+      console.log(this.reverse);
     },
     changeUrl(pokemonName) {
       this.$router.push({ name: 'PokemonDetail', params: { id: pokemonName } });
